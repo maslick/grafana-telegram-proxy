@@ -58,7 +58,6 @@ $ docker run -d \
    -e PASSWORD=12345 \
    -p 8082:8080 \
    maslick/grafana-telegram-proxy
-
 ```
 
 ## Kubernetes
@@ -69,4 +68,20 @@ $ kubectl set env deploy grafana-telegram-proxy \
    CHAT_ID=-12345 \
    USERNAME=maslick \
    PASSWORD=12345
+```
+
+## Heroku
+```zsh
+$ git clone https://github.com/maslick/grafana-telegram-proxy.git
+$ cd grafana-telegram-proxy
+
+$ export HEROKU_APP_NAME=hello-world-app
+$ heroku login
+$ heroku create $HEROKU_APP_NAME
+$ git push heroku master
+$ heroku config:set BOT_TOKEN=$BOT_TOKEN
+$ heroku config:set CHAT_ID=$CHAT_ID
+$ heroku config:set USERNAME=$USERNAME
+$ heroku config:set PASSWORD=$PASSWORD
+$ open https://${$HEROKU_APP_NAME}.herokuapp.com/health
 ```
