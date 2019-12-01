@@ -6,8 +6,12 @@ sending Grafana alarm messages to Telegram via the Webhook channel
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 
+## Motivation
+Sending Alert notifications via Teleram fails when Grafana instance runs on a server without direct access to Telegram API (e.g. Russian ISPs block Telegram servers). One way to solve this is to leverage the webhook notification channel and run an HTTP proxy that listens to Grafana webhooks, parses the payload and sends the notifications to Telegram API from a DMZ (or better say ``de-Russia-nized zone`` - any cloud provider, i.e. Heroku, GAE, EC2, foreign VPS, baremetal, etc.)
+
+
 ## Features
-* Sends Grafana alarm messages to Telegram via the Webhook channel
+* Grafana alert notifications to Telegram via the webhook notification channel
 * Lightweight static binary: ~2.5 MB zipped
 * Cloud-native friendly: Docker + k8s
 * Secure: Basic authentication (optional)
@@ -18,7 +22,6 @@ sending Grafana alarm messages to Telegram via the Webhook channel
 ```zsh
 $ go test
 $ go build -ldflags="-s -w"
-
 $ go build -ldflags="-s -w" && upx grafana-telegram-proxy
 ```
 
