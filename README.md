@@ -6,12 +6,13 @@ sending Grafana alarm messages to Telegram via the Webhook channel
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 
-
 ## Features
 * Sends Grafana alarm messages to Telegram via the Webhook channel
 * Lightweight static binary: ~2.5 MB zipped
 * Cloud-native friendly: Docker + k8s
 * Secure: Basic authentication (optional)
+
+![Grafana](screenshot.png)
 
 ## Installation
 ```zsh
