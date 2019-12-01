@@ -83,5 +83,5 @@ $ heroku config:set BOT_TOKEN=$BOT_TOKEN
 $ heroku config:set CHAT_ID=$CHAT_ID
 $ heroku config:set USERNAME=$USERNAME
 $ heroku config:set PASSWORD=$PASSWORD
-$ open https://${$HEROKU_APP_NAME}.herokuapp.com/health
+$ open https://$HEROKU_APP_NAME.herokuapp.com/health
 ```
