@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-telegram-proxy
+  labels:
+    maintainer: maslick
+    project: grafana-telegram-proxy
+    app: grafana-telegram-proxy
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+  selector:
+    maintainer: maslick
+    project: grafana-telegram-proxy
+    app: grafana-telegram-proxy
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-telegram-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      maintainer: maslick
+      project: grafana-telegram-proxy
+      app: grafana-telegram-proxy
+  template:
+    metadata:
+      name: grafana-telegram-proxy
+      labels:
+        maintainer: maslick
+        project: grafana-telegram-proxy
+        app: grafana-telegram-proxy
+    spec:
+      containers:
+        - image: maslick/grafana-telegram-proxy
+          name: grafana-telegram-proxy
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          env:
+            - name: BOT_TOKEN
+              value: '1234567890abcdef'
+            - name: CHAT_ID
+              value: '-12345'
+            - name: PORT
+              value: '8080'
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 30

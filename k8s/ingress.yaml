@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana-telegram-proxy
+  labels:
+    maintainer: maslick
+    project: grafana-telegram-proxy
+    app: grafana-telegram-proxy
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: grafana-telegram-proxy.maslick.ru
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: grafana-telegram-proxy
+              servicePort: 80
